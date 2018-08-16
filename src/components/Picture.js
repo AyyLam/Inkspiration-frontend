@@ -9,7 +9,9 @@ class Picture extends React.Component {
       return(
         <div>
           <div className="App-logo">Inkspiration</div>
-          <button onClick={()=> this.props.selectPicture(props.picture)}></button>
+          <div>{this.props.picture.title}</div>
+          <img src={this.props.picture.url}/>
+          <button onClick={()=> this.props.selectPicture(this.props.picture)}></button>
         </div>
       )
     }

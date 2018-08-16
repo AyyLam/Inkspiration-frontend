@@ -1,6 +1,7 @@
 import React from "react";
 import Picture from "./Picture";
 import { connect } from 'react-redux'
+import { getPictures} from '../actions'
 
 
 class PictureContainer extends React.Component {
@@ -8,14 +9,15 @@ class PictureContainer extends React.Component {
     this.props.getPictures()
   }
 
+renderPictures = () => this.props.pictures.map(picture => {
+    return <Picture key={picture.id} picture={picture} />
+  });
   render() {
-    const renderPictures = this.props.pictures.map(picture => {
-      return <Picture key={picture.id} picture={picture} />;
-    };
     return(
       <div>
         <div className="App-logo">Inkspiration</div>
-        <div>{renderPictures}</div>
+
+        <div>{this.renderPictures()}</div>
       </div>
     )
   }
@@ -28,4 +30,11 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, null )(PictureContainer)
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     getPictures: (data) => {dispatch(getPictures(data))}
+//   }
+// }
+
+
+export default connect(mapStateToProps, {getPictures})(PictureContainer)
