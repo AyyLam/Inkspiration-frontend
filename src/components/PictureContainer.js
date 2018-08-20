@@ -14,10 +14,8 @@ renderPictures = () => this.props.pictures.map(picture => {
   });
   render() {
     return(
-      <div>
-        <div className="App-logo">Inkspiration</div>
-
-        <div>{this.renderPictures()}</div>
+      <div className="picturesList">
+        {this.renderPictures()}
       </div>
     )
   }

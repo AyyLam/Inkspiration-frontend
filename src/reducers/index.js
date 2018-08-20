@@ -12,7 +12,7 @@ const reducer = (state = initialState, action) => {
 
     case "SELECT_PICTURE":
     return {
-      ...state, selectedPicture: action.payload.picture
+      ...state, selectedPicture: action.payload.selectedPicture
     }
 
     default:

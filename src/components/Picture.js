@@ -7,15 +7,16 @@ class Picture extends React.Component {
 
     render() {
       return(
-        <div>
-          <div className="App-logo">Inkspiration</div>
-          <div>{this.props.picture.title}</div>
-          <img src={this.props.picture.url}/>
-          <button onClick={()=> this.props.selectPicture(this.props.picture)}></button>
+        <div className="pictureItem">
+          <img src={this.props.picture.url} onClick={()=> this.props.selectPicture(this.props.picture)}/>
+          <div className="overlay">
+            <div className="text">{this.props.picture.title}</div>
+          </div>
         </div>
       )
     }
 }
+
 
 
 const mapDispatchToProps = (dispatch) => {

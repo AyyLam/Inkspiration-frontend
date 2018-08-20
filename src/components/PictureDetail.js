@@ -7,7 +7,7 @@ class PictureDetail extends React.Component {
   render(){
     return(
       <div>
-        <div>"A pic"</div>
+        <div>{this.props.selectedPicture.title}</div>
       </div>
     )
   }

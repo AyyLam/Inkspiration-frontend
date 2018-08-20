@@ -17,7 +17,7 @@ export const selectPicture = (picture) => {
   return {
     type: 'SELECT_PICTURE',
     payload: {
-      picture
+      selectedPicture: picture
     }
   }
 }
