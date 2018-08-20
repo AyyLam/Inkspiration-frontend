@@ -1,18 +1,23 @@
 import React from "react";
 import { selectPicture } from '../actions/index'
 import { connect } from 'react-redux'
+import { Link, Redirect } from 'react-router-dom'
 
 
 class Picture extends React.Component {
 
     render() {
       return(
-        <div className="pictureItem">
-          <img src={this.props.picture.url} onClick={()=> this.props.selectPicture(this.props.picture)}/>
+
+
+          <Link to={"/pictures/" + this.props.picture.id} onClick={()=> this.props.selectPicture(this.props.picture)}>
+            <div className="pictureItem">
+            <img src={this.props.picture.url}/>
           <div className="overlay">
             <div className="text">{this.props.picture.title}</div>
           </div>
         </div>
+        </Link>
       )
     }
 }
