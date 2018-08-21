@@ -1,12 +1,68 @@
 export const getPictures = () => {
+  const baseUrl = 'http://localhost:3001/api/v1/pictures'
   return (dispatch) => {
-    fetch('http://localhost:3001/api/v1/pictures')
-    .then(resp => resp.json())
+    fetch(baseUrl)
+    .then(r => r.json())
     .then(result => {
       dispatch({
         type: 'LOAD_PICTURES',
         payload: {
           pictures: result
+        }
+      })
+    })
+  }
+}
+export const getOnePicture = (id) => {
+  const baseUrl = 'http://localhost:3001/api/v1/pictures/' + id
+  return (dispatch) => {
+    dispatch( loadingTrue() )
+    fetch(baseUrl)
+    .then(r => r.json())
+    .then(result => {
+      dispatch(
+        selectPicture(result)
+      )
+      dispatch( loadingFalse() )
+    })
+  }
+}
+
+
+export const getArtist = (input) => {
+  const baseUrl = `http://localhost:3001/api/v1/artists/${input}`
+  return (dispatch) => {
+    fetch(baseUrl)
+    .then(r => r.json())
+    .then(artistData => {
+      dispatch({
+        type: 'GET_ARTIST',
+        payload: {
+          artist: artistData
+        }
+      })
+    })
+  }
+}
+
+export const createPicture = (input) => {
+  const baseUrl = 'http://localhost:3001/api/v1/pictures'
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-type': 'application/json',
+      Accept: 'application/json'
+    },
+    body: JSON.stringify({title: input.title, url: input.url, artist_id: input.artist_id})
+    }
+  return (dispatch) => {
+    fetch(baseUrl)
+    .then(r => r.json())
+    .then(result => {
+      dispatch({
+        type: 'CREATE_PICTURE',
+        payload: {
+          picture: result
         }
       })
     })
@@ -18,6 +74,31 @@ export const selectPicture = (picture) => {
     type: 'SELECT_PICTURE',
     payload: {
       selectedPicture: picture
+    }
+  }
+}
+
+export const loginHandle = (user) => {
+  return {
+    type: 'LOGIN_HANDLE',
+    payload: {
+      user: user
+    }
+  }
+}
+export const loadingTrue = () => {
+  return {
+    type: 'LOADING_TRUE',
+    payload: {
+      loading: true
+    }
+  }
+}
+export const loadingFalse = () => {
+  return {
+    type: 'LOADING_FALSE',
+    payload: {
+      loading: false
     }
   }
 }

@@ -14,8 +14,10 @@ renderPictures = () => this.props.pictures.map(picture => {
   });
   render() {
     return(
-      <div className="picturesList">
-        {this.renderPictures()}
+      <div className="App-pics-list">
+        <div className="pictures-list">
+          {this.renderPictures()}
+        </div>
       </div>
     )
   }

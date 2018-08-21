@@ -14,40 +14,34 @@
   src: url('./fonts/Tomatoes.ttf');
 }
 
-
-.App {
-  display: grid;
-  grid-template-columns: 20vw 70vw 15vw;
-  grid-template-areas: "l m r";
-  padding-top: 1vh;
-}
-
-.Whole {
+/* Base */
+.App-background {
   background-image: url('./night.gif');
   background-position: top;
   background-size: cover;
-  height: 150vmin
+  height: 200vmin
 }
 
-h1 {
+.App-name {
   font-family: 'BeautifulPeople';
-  font-size: 3em;
+  font-size: 4em;
   margin-bottom: 0px;
   margin-top: 1em;
   text-align: center;
   color: white;
 }
 
-h3 {
+.App-slogan {
   font-family: 'Painter';
-  font-size: 1.3em;
+  font-size: 1.4em;
   margin-top: 0px;
   margin-bottom: 0px;
   text-align: center;
   color: white;
 }
 
-.wrapper {
+/* Nav */
+.nav {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-auto-rows: 50px;
@@ -58,14 +52,22 @@ h3 {
   padding-top: 10px;
 }
 
-.picturesList {
+/* Picture Container */
+.App-pics-list {
+  display: grid;
+  grid-template-columns: 20vw 70vw 15vw;
+  grid-template-areas: "l m r";
+  padding-top: 1vh;
+}
+
+.pictures-list {
   display: flex;
   flex-wrap: wrap;
   grid-area: m;
   width: 100%;
 }
 
-.pictureItem {
+.picture-list-item {
   position: relative;
   margin: 1vmin;
   background-color: white;
@@ -77,7 +79,14 @@ h3 {
   height: 25vh;
 }
 
-.pictureItem:hover .overlay {
+.picture-list-item img {
+  width: 100%;
+  height: 100%;
+  border-color: black;
+  border-style: solid;
+}
+
+.picture-list-item:hover .overlay {
   opacity: 0.8;
 }
 
@@ -107,14 +116,38 @@ h3 {
   font-family: 'Tomatoes'
 }
 
-.pictureItem img {
+
+/* Picture Details */
+
+.App-pic {
+  display: grid;
+  grid-template-columns: 45% 55%;
+  grid-template-areas: "l r";
+  padding-top: 1vh;
+}
+
+.picture-detail-item {
+  display: flex;
+  grid-area: l;
   width: 100%;
-  height: 100%;
+  margin-left: 50px;
+  margin-top: 30px;
+}
+
+.picture-detail-item img {
+  width: 85%;
+  height: 85%;
   border-color: black;
   border-style: solid;
 }
 
-
+.picture-detail-artist {
+  color: yellow;
+  display: flex;
+  grid-area: r;
+  width: 100%;
+  text-align: center;
+}
 
 /*
 .App-logo {

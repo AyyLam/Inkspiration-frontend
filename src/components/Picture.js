@@ -8,10 +8,8 @@ class Picture extends React.Component {
 
     render() {
       return(
-
-
           <Link to={"/pictures/" + this.props.picture.id} onClick={()=> this.props.selectPicture(this.props.picture)}>
-            <div className="pictureItem">
+            <div className="picture-list-item">
             <img src={this.props.picture.url}/>
           <div className="overlay">
             <div className="text">{this.props.picture.title}</div>
