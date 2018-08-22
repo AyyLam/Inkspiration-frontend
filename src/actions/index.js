@@ -45,29 +45,29 @@ export const getArtist = (input) => {
   }
 }
 
-export const createPicture = (input) => {
-  const baseUrl = 'http://localhost:3001/api/v1/pictures'
-  const options = {
-    method: 'POST',
-    headers: {
-      'Content-type': 'application/json',
-      Accept: 'application/json'
-    },
-    body: JSON.stringify(input)
-    }
-  return (dispatch) => {
-    fetch(baseUrl, options)
-    .then(r => r.json())
-    .then(result => {
-      dispatch({
-        type: 'CREATE_PICTURE',
-        payload: {
-          picture: result
-        }
-      })
-    })
-  }
-}
+// export const createPicture = (input) => {
+//   const baseUrl = 'http://localhost:3001/api/v1/pictures'
+//   const options = {
+//     method: 'POST',
+//     headers: {
+//       'Content-type': 'application/json',
+//       Accept: 'application/json'
+//     },
+//     body: JSON.stringify(input)
+//     }
+//   return (dispatch) => {
+//     fetch(baseUrl, options)
+//     .then(r => r.json())
+//     .then(result => {
+//       dispatch({
+//         type: 'CREATE_PICTURE',
+//         payload: {
+//           picture: result
+//         }
+//       })
+//     })
+//   }
+// }
 
 export const selectPicture = (picture) => {
   return {

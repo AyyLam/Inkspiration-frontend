@@ -43,7 +43,7 @@
 /* Nav */
 .nav {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: 50px;
   grid-gap: 6em;
   align-items: center;
@@ -148,6 +148,49 @@
   text-align: center;
 }
 
+
+.FileUpload {
+  text-align: center;
+  padding: 40px;
+}
+
+.dropzone {
+  width : 200px;
+  height : 200px;
+  border : 1px solid black;
+  margin: auto;
+  padding: 30px;
+}
+
+input {
+    width: 20%;
+    padding: 5px 8px;
+    margin: 30px 10px;
+    box-sizing: border-box;
+    outline: none;
+    height: 100%;
+}
+
+input[type="submit"]{
+  width: 65px;
+  background: black;
+  color: #fff;
+  border: 1px solid #eee;
+  border-radius: 20px;
+  text-shadow:none;
+  outline: none;
+
+
+}
+
+input[type="submit"]:hover {
+  background: #016ABC;
+  color: #fff;
+  border: 1px solid #eee;
+  border-radius: 20px;
+  text-shadow: none;
+  outline: none;
+}
 /*
 .App-logo {
   animation: App-logo-spin infinite 20s linear;

@@ -1,7 +1,6 @@
 import React from 'react';
 import Dropzone from 'react-dropzone';
 import request from 'superagent';
-import { createPicture } from '../actions/index.js'
 import { connect } from 'react-redux'
 
 const CLOUDINARY_UPLOAD_PRESET = 'inkspirationAnt';
@@ -48,9 +47,27 @@ class ImageUpload extends React.Component {
     title: e.target.value
   })}
 
+  createPicture = (input) => {
+    const baseUrl = 'http://localhost:3001/api/v1/pictures'
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        Accept: 'application/json'
+      },
+      body: JSON.stringify(input)
+      }
+    return(
+      fetch(baseUrl, options)
+      .then(r => r.json())
+      .then((r)=> console.log(r))
+    )
+  }
+
+
   handleSubmit = (e) => {
     e.preventDefault()
-    this.props.createPicture({title: this.state.title, url: this.state.uploadedFileCloudinaryUrl, artist_id: this.props.user.id})
+    this.createPicture({title: this.state.title, url: this.state.uploadedFileCloudinaryUrl, artist_id: this.props.user.id})
   }
 
     render() {
@@ -61,10 +78,13 @@ class ImageUpload extends React.Component {
               <label>Title</label>
               <input type="text" name="title" value={this.state.title} onChange={this.handleTitleChange}/>
                 <Dropzone
+                  className="dropzone"
                   multiple={false}
                   accept="image/*"
                   onDrop={this.onImageDrop}>
-                  <p>Drop an image or click to select a file to upload.</p>
+                  <p>Drop Image</p>
+                  <p>OR</p>
+                  <p>Click to upload an Image</p>
                 </Dropzone>
               <input type="submit" value="Submit"/>
             </form>
@@ -76,26 +96,24 @@ class ImageUpload extends React.Component {
               <img src={this.state.uploadedFileCloudinaryUrl} />
             </div>}
           </div>
-
-
         </div>
       )
     }
   }
-//
+
   const mapStateToProps = (state) => {
     return {
       user: state.user
     }
   }
 
-  const mapDispatchToProps = (dispatch) => {
-    return {
-      createPicture: (data) => {dispatch(createPicture(data))},
-    }
-  }
+  // const mapDispatchToProps = (dispatch) => {
+  //   return {
+  //     createPicture: (data) => {dispatch(createPicture(data))},
+  //   }
+  // }
 //
-export default connect(mapStateToProps, mapDispatchToProps)(ImageUpload);
+export default connect(mapStateToProps, null)(ImageUpload);
 
 //
 // <div>

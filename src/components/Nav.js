@@ -8,6 +8,7 @@ const Nav = (props) => {
         <Link to='/pictures'>Pictures</Link>
         <p>Login</p>
         <p>Sign Up</p>
+        <Link to='/upload'>Upload Image</Link>
       </div>
     )
 
