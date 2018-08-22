@@ -3,7 +3,9 @@ const initialState = {
   pictures: [],
   selectedPicture: {},
   artist: {},
-  loading: false
+  loading: false,
+  uploadedFileCloudinaryUrl: "",
+  uploadedFile: null
 }
 
 const reducer = (state = initialState, action) => {
@@ -31,6 +33,16 @@ const reducer = (state = initialState, action) => {
     case "LOADING_FALSE":
     return {
       ...state, loading: action.payload.loading
+    }
+
+    case "UPLOAD_FILE":
+    return {
+      ...state, uploadedFile: action.payload.uploadedFile
+    }
+
+    case "LOAD_UPLOAD_URL":
+    return {
+      ...state, uploadedFileCloudinaryUrl: action.payload.cloudinaryUrl
     }
 
     default:

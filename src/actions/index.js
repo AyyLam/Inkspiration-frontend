@@ -56,7 +56,7 @@ export const createPicture = (input) => {
     body: JSON.stringify({title: input.title, url: input.url, artist_id: input.artist_id})
     }
   return (dispatch) => {
-    fetch(baseUrl)
+    fetch(baseUrl, options)
     .then(r => r.json())
     .then(result => {
       dispatch({
@@ -99,6 +99,26 @@ export const loadingFalse = () => {
     type: 'LOADING_FALSE',
     payload: {
       loading: false
+    }
+  }
+}
+
+export const onImageDrop = (files) => {
+  console.log('HEY IMAGE DROPPED')
+  return {
+    type: 'UPLOAD_FILE',
+    payload: {
+      uploadedFile: files[0]
+    }
+  }
+  // this.handleImageUpload(files[0])
+}
+
+export const loadUploadedUrl = (url) => {
+  return {
+    type: 'LOAD_UPLOAD_URL',
+    payload: {
+      cloudinaryUrl: url
     }
   }
 }

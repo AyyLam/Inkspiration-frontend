@@ -1,15 +1,9 @@
 import React from "react";
 import { connect } from 'react-redux'
 import { getOnePicture } from '../actions/index.js'
+import ImageUpload from './ImageUpload.js';
 
 class PictureDetail extends React.Component {
-
-  // findArtist = () => {
-  //   const baseUrl = `http://localhost:3001/api/v1/artists/${this.props.selectedPicture.id}`
-  //   return
-  //     fetch(baseUrl)
-  //     .then(r => r.json())
-  // }
 
   componentDidMount() {
     if (!this.props.selectedPicture.title){
@@ -18,7 +12,6 @@ class PictureDetail extends React.Component {
   }
 
   render(){
-    // let artistObj = this.findArtist()
     console.log("loading? ", this.props.loading)
 
       if(this.props.loading) {
@@ -32,6 +25,7 @@ class PictureDetail extends React.Component {
         <div className="picture-detail-artist">
           <h1>{this.props.selectedPicture ? this.props.selectedPicture.title : null}</h1>
           <h1>{this.props.selectedPicture.artist ? this.props.selectedPicture.artist.name : null}</h1>
+          <ImageUpload/>
         </div>
       </div>
     )}
