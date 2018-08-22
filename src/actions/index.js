@@ -53,7 +53,7 @@ export const createPicture = (input) => {
       'Content-type': 'application/json',
       Accept: 'application/json'
     },
-    body: JSON.stringify({title: input.title, url: input.url, artist_id: input.artist_id})
+    body: JSON.stringify(input)
     }
   return (dispatch) => {
     fetch(baseUrl, options)
