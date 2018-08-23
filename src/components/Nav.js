@@ -7,6 +7,7 @@ const Nav = (props) => {
       <div className="nav">
         <Link to='/pictures'>Pictures</Link>
         <Link to='/login'>Login</Link>
+        <Link to='/about'>About</Link>
         <Link to='/signup'>Sign Up</Link>
         <Link to='/upload'>Upload Image</Link>
       </div>

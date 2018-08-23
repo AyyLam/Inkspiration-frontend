@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import PictureContainer from './components/PictureContainer.js';
 import PictureDetail from './components/PictureDetail.js';
 import Login from './components/Login.js';
+import SignUp from './components/SignUp.js';
 import ImageUpload from './components/ImageUpload.js';
+import About from './components/About.js';
 import Nav from './components/Nav.js';
 import { Switch, Route, withRouter, Redirect} from 'react-router-dom'
 import './App.css';
@@ -19,6 +21,9 @@ class App extends Component {
             <Route path="/login" render={() => {
               return <Login />
               }} />
+            <Route path="/signup" render={() => {
+              return <SignUp />
+              }} />
             <Route path="/upload" render={() => {
               return <ImageUpload />
               }} />
@@ -29,6 +34,8 @@ class App extends Component {
 
             <Route path='/pictures' render={() => {
                 return <PictureContainer />}}/>
+            <Route path='/' render={() => {
+                return <About/>}}/>
           </Switch>
       </div>
 
