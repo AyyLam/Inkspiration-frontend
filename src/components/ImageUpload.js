@@ -70,6 +70,8 @@ class ImageUpload extends React.Component {
     this.createPicture({title: this.state.title, url: this.state.uploadedFileCloudinaryUrl, artist_id: this.props.user.id})
   }
 
+
+
     render() {
       return(
         <div>
@@ -84,16 +86,16 @@ class ImageUpload extends React.Component {
                   onDrop={this.onImageDrop}>
                   <p>Drop Image</p>
                   <p>OR</p>
-                  <p>Click to upload an Image</p>
+                  <p>Click To Upload</p>
                 </Dropzone>
               <input type="submit" value="Submit"/>
             </form>
           </div>
           <div>
             {this.state.uploadedFileCloudinaryUrl === '' ? null :
-            <div>
-              <p>{this.state.uploadedFile.name}</p>
-              <img src={this.state.uploadedFileCloudinaryUrl} />
+            <div id="uploaded">
+              <img className="previewImage" src={this.state.uploadedFileCloudinaryUrl} />
+              Preview
             </div>}
           </div>
         </div>

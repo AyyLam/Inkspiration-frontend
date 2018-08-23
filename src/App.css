@@ -14,6 +14,16 @@
   src: url('./fonts/Tomatoes.ttf');
 }
 
+@font-face {
+  font-family: 'BacktoBlackBold';
+  src: url('./fonts/BacktoBlackBold.ttf');
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
 /* Base */
 .App-background {
   background-image: url('./night.gif');
@@ -50,6 +60,38 @@
   text-align: center;
   color: white;
   padding-top: 10px;
+  text-decoration: none;
+}
+
+/* SHIFT */
+.nav a {
+  position: relative;
+  z-index: 1;
+}
+.nav a:hover {
+  color: black;
+}
+.nav a:after {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  width: 50%;
+  height: 100%;
+  content: '.';
+  color: transparent;
+  background: turquoise;
+  visibility: none;
+  opacity: 0;
+  z-index: -1;
+}
+.nav a:hover:after {
+  opacity: 1;
+  visibility: visible;
+  height: 100%;
 }
 
 /* Picture Container */
@@ -146,6 +188,7 @@
   grid-area: r;
   width: 100%;
   text-align: center;
+  margin-top: 200px
 }
 
 
@@ -157,9 +200,20 @@
 .dropzone {
   width : 200px;
   height : 200px;
-  border : 1px solid black;
+  border-width: 2px;
+  border-color: rgb(102, 102, 102);
+  border-style: groove;
+  border-radius: 5px;
   margin: auto;
-  padding: 30px;
+  padding: 50px;
+  background-image: url('./no-ragrets.gif');
+  background-size: cover;
+  background-position: center;
+  text-transform: uppercase;
+  font-size: 18px;
+  text-align: center;
+  color: white;
+
 }
 
 input {
@@ -190,6 +244,27 @@ input[type="submit"]:hover {
   border-radius: 20px;
   text-shadow: none;
   outline: none;
+}
+
+#uploaded {
+  width: 20vw;
+  min-height: 30vw;
+  text-align: center;
+  margin: 0px 40vw;
+  color: white;
+}
+
+.previewImage {
+  width: 100%;
+  height: 100%;
+
+}
+
+/* LoginForm */
+
+.loginform {
+  text-align: center;
+  padding-top: 50px;
 }
 /*
 .App-logo {
