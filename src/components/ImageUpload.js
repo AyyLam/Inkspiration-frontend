@@ -2,6 +2,8 @@ import React from 'react';
 import Dropzone from 'react-dropzone';
 import request from 'superagent';
 import { connect } from 'react-redux'
+import { loadingTrue, loadingFalse } from '../actions/index.js'
+
 
 const CLOUDINARY_UPLOAD_PRESET = 'inkspirationAnt';
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/ayylam/upload';
@@ -29,12 +31,14 @@ class ImageUpload extends React.Component {
             console.log(response.body.secure_url)
             this.setState({
               uploadedFileCloudinaryUrl: response.body.secure_url
-            }, () => console.log(this.state.uploadedFileCloudinaryUrl))
+            }, () => this.props.loadingFalse())
           };
         });
       }
 
   onImageDrop = (files) =>  {
+    this.props.loadingTrue()
+
     console.log(files)
     this.setState({
       uploadedFile: files[0]
@@ -67,19 +71,31 @@ class ImageUpload extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    this.createPicture({title: this.state.title, url: this.state.uploadedFileCloudinaryUrl, artist_id: this.props.user.id})
+    if(this.state.uploadedFileCloudinaryUrl && this.state.title) {
+      this.createPicture({title: this.state.title, url: this.state.uploadedFileCloudinaryUrl, artist_id: this.props.user.id})
+      alert("Upload successful!")
+    } else {
+      alert("Missing title/image")
+    }
+    this.setState({
+      title: "",
+      uploadedFile: [],
+      uploadedFileCloudinaryUrl: "",
+    })
   }
 
 
 
     render() {
+      console.log('Loading?:', this.props.loading)
       return(
         <div>
           <div className="FileUpload">
+            {this.props.loading ? <img  className="loadingUpload" src={require('../loading.gif')}/> :
             <form onSubmit={this.handleSubmit}>
               <label>Title</label>
               <input type="text" name="title" value={this.state.title} onChange={this.handleTitleChange}/>
-                <Dropzone
+                 <Dropzone
                   className="dropzone"
                   multiple={false}
                   accept="image/*"
@@ -89,7 +105,7 @@ class ImageUpload extends React.Component {
                   <p>Click To Upload</p>
                 </Dropzone>
               <input type="submit" value="Submit"/>
-            </form>
+            </form>}
           </div>
           <div>
             {this.state.uploadedFileCloudinaryUrl === '' ? null :
@@ -105,17 +121,18 @@ class ImageUpload extends React.Component {
 
   const mapStateToProps = (state) => {
     return {
-      user: state.user
+      user: state.user,
+      loading: state.loading
     }
   }
-
+  //
   // const mapDispatchToProps = (dispatch) => {
   //   return {
   //     createPicture: (data) => {dispatch(createPicture(data))},
   //   }
   // }
-//
-export default connect(mapStateToProps, null)(ImageUpload);
+
+export default connect(mapStateToProps, {loadingTrue, loadingFalse})(ImageUpload);
 
 //
 // <div>
