@@ -1,5 +1,5 @@
 export const getPictures = () => {
-  const baseUrl = 'http://localhost:3001/api/v1/pictures'
+  const baseUrl = 'https://inkspiration.herokuapp.com/api/v1/pictures'
   return (dispatch) => {
     fetch(baseUrl)
     .then(r => r.json())
@@ -14,7 +14,7 @@ export const getPictures = () => {
   }
 }
 export const getOnePicture = (id) => {
-  const baseUrl = 'http://localhost:3001/api/v1/pictures/' + id
+  const baseUrl = 'https://inkspiration.herokuapp.com/api/v1/pictures/' + id
   return (dispatch) => {
     dispatch( loadingTrue() )
     fetch(baseUrl)
@@ -30,7 +30,7 @@ export const getOnePicture = (id) => {
 
 
 export const getArtist = (input) => {
-  const baseUrl = `http://localhost:3001/api/v1/artists/${input}`
+  const baseUrl = `https://inkspiration.herokuapp.com/api/v1/artists/${input}`
   return (dispatch) => {
     fetch(baseUrl)
     .then(r => r.json())
@@ -46,7 +46,7 @@ export const getArtist = (input) => {
 }
 
 // export const createPicture = (input) => {
-//   const baseUrl = 'http://localhost:3001/api/v1/pictures'
+//   const baseUrl = 'https://inkspiration.herokuapp.com/api/v1/pictures'
 //   const options = {
 //     method: 'POST',
 //     headers: {

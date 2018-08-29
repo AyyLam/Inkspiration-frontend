@@ -52,7 +52,7 @@ class ImageUpload extends React.Component {
   })}
 
   createPicture = (input) => {
-    const baseUrl = 'http://localhost:3001/api/v1/pictures'
+    const baseUrl = 'https://inkspiration.herokuapp.com/api/v1/pictures'
     const options = {
       method: 'POST',
       headers: {
