@@ -1,5 +1,17 @@
+
+@font-face {
+  font-family: 'BacktoBlackBold';
+  src: url('./fonts/BacktoBlackBold.ttf');
+}
+
+@font-face {
+  font-family: 'Ribeye';
+  src: url('./fonts/Ribeye.ttf');
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Ribeye';
+  color: white;
 }

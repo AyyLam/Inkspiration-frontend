@@ -1,5 +1,5 @@
 const initialState = {
-  user: "",
+  user: {id: 5, name: "Anthony", username: "Anthony", location: "NYC", bio: "THE GOD"},
   pictures: [],
   selectedPicture: {},
   artist: {},

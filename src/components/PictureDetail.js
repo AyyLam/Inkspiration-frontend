@@ -24,7 +24,8 @@ class PictureDetail extends React.Component {
 
         <div className="picture-detail-artist">
           <h1>{this.props.selectedPicture ? this.props.selectedPicture.title : null}</h1>
-          <h1>{this.props.selectedPicture.artist ? this.props.selectedPicture.artist.name : null}</h1>
+          <br/>
+          <h2>Artist: {this.props.selectedPicture.artist ? this.props.selectedPicture.artist.name : null}</h>
         </div>
       </div>
     )}

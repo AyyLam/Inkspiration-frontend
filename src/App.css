@@ -14,12 +14,41 @@
   src: url('./fonts/Tomatoes.ttf');
 }
 
+@font-face {
+  font-family: 'BacktoBlackBold';
+  src: url('./fonts/BacktoBlackBold.ttf');
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+.about {
+  width: 600px;
+  text-align: center;
+  margin-left: 400px;
+  margin-top: 120px;
+  font-size: 1.5em;
+}
+
+.pictureLink {
+  width: 600px;
+  text-align: center;
+  margin-left: 600px;
+  margin-top: 120px;
+  font-size: 1.5em;
+  border: 1px solid black;
+}
+
+.pictureLink:hover {
+  background-color: black;
+}
 /* Base */
 .App-background {
   background-image: url('./night.gif');
   background-position: top;
   background-size: cover;
-  height: 200vmin
+  height: 150vmin
 }
 
 .App-name {
@@ -43,13 +72,45 @@
 /* Nav */
 .nav {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   grid-auto-rows: 50px;
   grid-gap: 6em;
   align-items: center;
   text-align: center;
   color: white;
   padding-top: 10px;
+  text-decoration: none;
+}
+
+/* SHIFT */
+.nav a {
+  position: relative;
+  z-index: 1;
+}
+.nav a:hover {
+  color: black;
+}
+.nav a:after {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  width: 50%;
+  height: 100%;
+  content: '.';
+  color: transparent;
+  background: turquoise;
+  visibility: none;
+  opacity: 0;
+  z-index: -1;
+}
+.nav a:hover:after {
+  opacity: 1;
+  visibility: visible;
+  height: 100%;
 }
 
 /* Picture Container */
@@ -65,6 +126,8 @@
   flex-wrap: wrap;
   grid-area: m;
   width: 100%;
+  height: 100vh;
+  overflow-y: scroll;
 }
 
 .picture-list-item {
@@ -76,7 +139,7 @@
   margin-top: 40px;
   margin-right: 40px;
   width: 250px;
-  height: 25vh;
+  height: 30vh;
 }
 
 .picture-list-item img {
@@ -146,8 +209,92 @@
   grid-area: r;
   width: 100%;
   text-align: center;
+  margin-top: 200px
 }
 
+
+.FileUpload {
+  text-align: center;
+  padding: 40px;
+}
+
+.dropzone {
+  width : 270px;
+  height : 200px;
+  border-width: 2px;
+  border-color: rgb(102, 102, 102);
+  border-style: groove;
+  border-radius: 5px;
+  margin: auto;
+  padding: 50px;
+  background-image: url('./no-ragrets.gif');
+  background-size: cover;
+  background-position: bottom;
+  text-transform: uppercase;
+  font-size: 18px;
+  text-align: center;
+  color: white;
+
+}
+
+input {
+    width: 20%;
+    padding: 5px 8px;
+    margin: 30px 10px;
+    box-sizing: border-box;
+    outline: none;
+    height: 100%;
+}
+
+input[type="submit"]{
+  width: 65px;
+  background: black;
+  color: #fff;
+  border: 1px solid #eee;
+  border-radius: 20px;
+  text-shadow:none;
+  outline: none;
+
+
+}
+
+input[type="submit"]:hover {
+  background: #016ABC;
+  color: #fff;
+  border: 1px solid #eee;
+  border-radius: 20px;
+  text-shadow: none;
+  outline: none;
+}
+
+#uploaded {
+  width: 20vw;
+  min-height: 30vw;
+  text-align: center;
+  margin: 0px 40vw;
+  color: white;
+}
+
+.previewImage {
+  width: 100%;
+  height: 100%;
+
+}
+
+.loadingUpload {
+  width : 150px;
+  height : 170px;
+  margin: auto;
+  padding: 50px;
+
+}
+
+/* LoginForm */
+
+.loginform {
+  text-align: center;
+  padding-top: 50px;
+}
 /*
 .App-logo {
   animation: App-logo-spin infinite 20s linear;

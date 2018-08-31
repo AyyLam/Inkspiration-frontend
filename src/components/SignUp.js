@@ -2,28 +2,37 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { loginHandle } from '../actions/index'
 
-class LoginForm extends React.Component {
+
+
+class SignUp extends React.Component {
 
   render () {
     return (
       <div className="loginform">
-        <h3>Log In</h3>
+        <h3>Sign Up</h3>
         <form >
+          <label>Name</label>
+          <input type="text" value={this.props.user.name} onChange={this.props.loginHandle}/>
+          <br/>
           <label>Username</label>
           <input type="text" value={this.props.user.username} onChange={this.props.loginHandle}/>
           <br/>
           <label>Password</label>
           <input type="password"/>
           <br/>
+          <br/>
+          <label>Location</label>
+          <input type="text" value={this.props.user.location}/>
+          <br/>
+          <label>Description</label>
+          <input type="text" value={this.props.user.bio }/>
+          <br/>
+
           <input type="submit" value="Submit"/>
           </form>
       </div>
       )
   }
-  // handleSubmit = (e) => {
-  //     e.preventDefault()
-  //     this.props.handleLogin(this.state.username)
-  //   }
 
 
 }
@@ -40,4 +49,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps )(LoginForm)
+export default connect(mapStateToProps, mapDispatchToProps )(SignUp)
