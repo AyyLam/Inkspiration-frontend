@@ -64,13 +64,14 @@ class ImageUpload extends React.Component {
     return(
       fetch(baseUrl, options)
       .then(r => r.json())
-      .then((r)=> console.log(r))
+      .then((r)=> console.log("Picture created:", r))
     )
   }
 
 
   handleSubmit = (e) => {
     e.preventDefault()
+    console.log(this.state.uploadedFileCloudinaryUrl, this.state.title)
     if(this.state.uploadedFileCloudinaryUrl && this.state.title) {
       this.createPicture({title: this.state.title, url: this.state.uploadedFileCloudinaryUrl, artist_id: this.props.user.id})
       alert("Upload successful!")
@@ -125,19 +126,6 @@ class ImageUpload extends React.Component {
       loading: state.loading
     }
   }
-  //
-  // const mapDispatchToProps = (dispatch) => {
-  //   return {
-  //     createPicture: (data) => {dispatch(createPicture(data))},
-  //   }
-  // }
+
 
 export default connect(mapStateToProps, {loadingTrue, loadingFalse})(ImageUpload);
-
-//
-// <div>
-//   {this.state.uploadedFileCloudinaryUrl === '' ? null :
-// <div>
-//   <img src={this.state.uploadedFileCloudinaryUrl} />
-// </div>}
-// export default ImageUpload
