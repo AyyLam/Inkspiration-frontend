@@ -1,5 +1,5 @@
 const initialState = {
-  user: {id: 5, name: "Anthony", username: "Anthony", location: "NYC", bio: "THE GOD"},
+  currentUser: {id: "", name: "HOY", username: "", password: "", location: "", bio: ""},
   pictures: [],
   selectedPicture: {},
   artist: {},
@@ -20,9 +20,14 @@ const reducer = (state = initialState, action) => {
       ...state, selectedPicture: action.payload.selectedPicture
     }
 
-    case "LOGIN_HANDLE":
+    case "CREATE_USER":
     return {
-      ...state, user: action.payload.user
+      ...state, currentUser: action.payload.currentUser
+    }
+
+    case "GET_USER":
+    return {
+      ...state, currentUser: action.payload.currentUser
     }
 
     case "LOADING_TRUE":

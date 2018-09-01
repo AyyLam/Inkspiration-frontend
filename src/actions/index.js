@@ -1,3 +1,43 @@
+export const createUser = (user) => {
+  const baseUrl = 'http://localhost:3001/api/v1/'
+  const artistUrl = 'http://localhost:3001/api/v1/artists'
+  const options = {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        Accept: 'application/json'
+      },
+      body: JSON.stringify(user)
+  }
+  return (dispatch) => {
+    fetch(artistUrl, options)
+    .then(r => r.json())
+    .then(result => {
+      fetch(baseUrl + 'current_user', {
+        headers: {
+          'Content-Type': 'application/json',
+          Accepts: 'application/json',
+          Authorization: result.token
+        }
+      }).then(r => r.json())
+        .then(user => {
+          if (user === null) {
+            return alert("Please fill out all fields.")
+          } else {
+              localStorage.setItem('token', result.token)
+              dispatch({
+                type: 'CREATE_USER',
+                payload: {
+                  currentUser: user
+                }
+              })
+              return loadingFalse()
+            }
+          })
+        })
+    }
+}
+
 export const getPictures = () => {
   const baseUrl = 'http://localhost:3001/api/v1/pictures'
   return (dispatch) => {

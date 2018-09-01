@@ -1,10 +1,11 @@
 import React from 'react'
 import { Link, Redirect } from 'react-router-dom'
-
+import { connect } from 'react-redux'
 
 const Nav = (props) => {
   return (
       <div className="nav">
+       Welcome {props.currentUser.name}
         <Link to='/pictures'>Pictures</Link>
         <Link to='/login'>Login</Link>
         <Link to='/about'>About</Link>
@@ -15,4 +16,10 @@ const Nav = (props) => {
 
 }
 
-export default Nav;
+const mapStateToProps = (state) => {
+  return {
+    currentUser: state.currentUser
+  }
+}
+
+export default connect(mapStateToProps, null) (Nav);
