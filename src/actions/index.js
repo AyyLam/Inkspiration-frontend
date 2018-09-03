@@ -38,6 +38,50 @@ export const createUser = (user) => {
     }
 }
 
+
+export const loginUser = (username, password) => {
+  const baseUrl = 'http://localhost:3001/api/v1/'
+  const options = {
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json'
+    },
+    method: 'POST',
+    body: JSON.stringify({
+      username: username,
+      password: password
+    })
+  }
+  return (dispatch) => {
+    //fetch to auth controller to get token
+    fetch(baseUrl + 'auth', options)
+    .then(res => res.json())
+    .then(result => {
+      //fetch to current user path
+      fetch(baseUrl + 'current_user', {
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: result.token
+        }
+      }).then(r => r.json())
+        .then(user => {
+          if (user === null) {
+            return alert('Incorrect email address or password')
+          } else {
+          localStorage.setItem('token', result.token)
+          dispatch({
+            type: 'GET_USER',
+            payload: {
+              currentUser: user
+            }
+          })
+          }
+        })
+    })
+  }
+}
+
 export const getPictures = () => {
   const baseUrl = 'http://localhost:3001/api/v1/pictures'
   return (dispatch) => {
@@ -84,30 +128,6 @@ export const getArtist = (input) => {
     })
   }
 }
-
-// export const createPicture = (input) => {
-//   const baseUrl = 'http://localhost:3001/api/v1/pictures'
-//   const options = {
-//     method: 'POST',
-//     headers: {
-//       'Content-type': 'application/json',
-//       Accept: 'application/json'
-//     },
-//     body: JSON.stringify(input)
-//     }
-//   return (dispatch) => {
-//     fetch(baseUrl, options)
-//     .then(r => r.json())
-//     .then(result => {
-//       dispatch({
-//         type: 'CREATE_PICTURE',
-//         payload: {
-//           picture: result
-//         }
-//       })
-//     })
-//   }
-// }
 
 export const selectPicture = (picture) => {
   return {

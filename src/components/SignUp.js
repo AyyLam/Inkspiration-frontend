@@ -74,4 +74,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default withRouter(connect(mapStateToProps, {createUser, loadingTrue, loadingFalse} )(SignUp))
+export default withRouter(connect(mapStateToProps, {createUser, loadingTrue, loadingFalse})(SignUp))

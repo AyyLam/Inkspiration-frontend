@@ -1,43 +1,61 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { loginHandle } from '../actions/index'
+import { loginUser } from '../actions/index'
 
 class LoginForm extends React.Component {
+
+  state = {
+      user: {
+        username: "",
+        password: ""
+      }
+  }
+
+  handleChangeUsername = (e) => {
+    console.log(this.state.user)
+    this.setState({
+      user: {
+        ...this.state.user, username: e.target.value
+      }
+    })
+  }
+
+  handleChangePassword = (e) => {
+    console.log(this.state.user)
+    this.setState({
+      user: {
+        ...this.state.user, password: e.target.value
+      }
+    })
+  }
+
+  handleSubmit = (e) => {
+      e.preventDefault()
+      this.props.loginUser(e.target.username.value, e.target.password.value)
+    }
 
   render () {
     return (
       <div className="loginform">
         <h3>Log In</h3>
-        <form >
+        <form onSubmit={this.handleSubmit}>
           <label>Username</label>
-          <input type="text" value="" onChange={this.props.loginHandle}/>
+          <input type="text" name="username" value={this.state.username} onChange={this.handleChangeUsername}/>
           <br/>
           <label>Password</label>
-          <input type="password"/>
+          <input type="password" name="password" value={this.state.password} onChange={this.handleChangePassword}/>
           <br/>
           <input type="submit" value="Submit"/>
           </form>
       </div>
       )
   }
-  // handleSubmit = (e) => {
-  //     e.preventDefault()
-  //     this.props.handleLogin(this.state.username)
-  //   }
-
-
 }
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user
+    currentUser: state.currentUser
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    loginHandle: (data) => {dispatch(loginHandle(data))}
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps )(LoginForm)
+export default connect(mapStateToProps, {loginUser})(LoginForm)
