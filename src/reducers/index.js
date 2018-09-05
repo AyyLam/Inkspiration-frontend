@@ -1,5 +1,5 @@
 const initialState = {
-  currentUser: {id: "", name: "HOY", username: "", password: "", location: "", bio: ""},
+  currentUser: {},
   pictures: [],
   selectedPicture: {},
   artist: {},
@@ -26,6 +26,11 @@ const reducer = (state = initialState, action) => {
     }
 
     case "GET_USER":
+    return {
+      ...state, currentUser: action.payload.currentUser
+    }
+
+    case "LOGOUT_USER":
     return {
       ...state, currentUser: action.payload.currentUser
     }

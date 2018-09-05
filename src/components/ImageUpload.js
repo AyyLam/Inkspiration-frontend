@@ -73,7 +73,7 @@ class ImageUpload extends React.Component {
     e.preventDefault()
     console.log(this.state.uploadedFileCloudinaryUrl, this.state.title)
     if(this.state.uploadedFileCloudinaryUrl && this.state.title) {
-      this.createPicture({title: this.state.title, url: this.state.uploadedFileCloudinaryUrl, artist_id: this.props.user.id})
+      this.createPicture({title: this.state.title, url: this.state.uploadedFileCloudinaryUrl, artist_id: this.props.currentUser.id})
       alert("Upload successful!")
     } else {
       alert("Missing title/image")
@@ -122,7 +122,7 @@ class ImageUpload extends React.Component {
 
   const mapStateToProps = (state) => {
     return {
-      user: state.user,
+      currentUser: state.currentUser,
       loading: state.loading
     }
   }

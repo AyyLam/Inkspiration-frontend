@@ -20,20 +20,20 @@ export const createUser = (user) => {
           Authorization: result.token
         }
       }).then(r => r.json())
-        .then(user => {
-          if (user === null) {
-            return alert("Please fill out all fields.")
-          } else {
-              localStorage.setItem('token', result.token)
-              dispatch({
-                type: 'CREATE_USER',
-                payload: {
-                  currentUser: user
-                }
-              })
-              return loadingFalse()
-            }
-          })
+        // .then(user => {
+        //   if (user === null) {
+        //     return alert("Please fill out all fields.")
+        //   } else {
+        //       localStorage.setItem('token', result.token)
+        //       dispatch({
+        //         type: 'CREATE_USER',
+        //         payload: {
+        //           currentUser: user
+        //         }
+        //       })
+        //       return loadingFalse()
+        //     }
+        //   })
         })
     }
 }
@@ -69,6 +69,7 @@ export const loginUser = (username, password) => {
           if (user === null) {
             return alert('Incorrect email address or password')
           } else {
+            console.log('YEE');
           localStorage.setItem('token', result.token)
           dispatch({
             type: 'GET_USER',
@@ -81,6 +82,16 @@ export const loginUser = (username, password) => {
     })
   }
 }
+
+export const logoutUser = () => {
+  return {
+    type: 'LOGOUT_USER',
+    payload: {
+      currentUser: {}
+    }
+  }
+}
+
 
 export const getPictures = () => {
   const baseUrl = 'http://localhost:3001/api/v1/pictures'

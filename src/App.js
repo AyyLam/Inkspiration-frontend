@@ -6,6 +6,7 @@ import SignUp from './components/SignUp.js';
 import ImageUpload from './components/ImageUpload.js';
 import About from './components/About.js';
 import Nav from './components/Nav.js';
+import Profile from './components/Profile.js';
 import { Switch, Route, withRouter, Redirect} from 'react-router-dom'
 import './App.css';
 
@@ -28,14 +29,19 @@ class App extends Component {
               return <ImageUpload />
               }} />
             <Route path='/pictures/:id' render={(routerProps) => {
-                  console.log("id: ", routerProps.match.params.id);
-                  const id = routerProps.match.params.id
-                  return  <PictureDetail id={id}/>}}/>
-
+              console.log("id: ", routerProps.match.params.id);
+              const id = routerProps.match.params.id
+              return  <PictureDetail id={id}/>
+              }}/>
             <Route path='/pictures' render={() => {
-                return <PictureContainer />}}/>
-            <Route path='/' render={() => {
-                return <About/>}}/>
+              return <PictureContainer />
+              }}/>
+            <Route path='/profile' render={() => {
+              return <Profile/>
+              }}/>
+            <Route path='/about' render={() => {
+              return <About/>
+              }}/>
           </Switch>
       </div>
 

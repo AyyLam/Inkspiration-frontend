@@ -31,11 +31,12 @@ class SignUp extends React.Component {
     e.preventDefault()
     this.props.createUser(this.state.user)
     console.log(this.props.loading);
-    if (this.props.loading){
+    console.log(this.props.currentUser.id);
+    if (this.props.currentUser.id){
       console.log('Loading')
     } else {
-      console.log(this.props.currentUser);
-      this.props.history.push("/user")
+      console.log("bad");
+      this.props.history.push("/login")
     }
 
   }

@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { loginUser } from '../actions/index'
+import { loginUser, logoutUser } from '../actions/index'
+import { withRouter } from 'react-router-dom'
 
 class LoginForm extends React.Component {
 
@@ -9,6 +10,11 @@ class LoginForm extends React.Component {
         username: "",
         password: ""
       }
+  }
+
+  componentDidMount() {
+    localStorage.removeItem('token')
+    this.props.logoutUser()
   }
 
   handleChangeUsername = (e) => {
@@ -32,6 +38,7 @@ class LoginForm extends React.Component {
   handleSubmit = (e) => {
       e.preventDefault()
       this.props.loginUser(e.target.username.value, e.target.password.value)
+      this.props.history.push("/pictures")
     }
 
   render () {
@@ -58,4 +65,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {loginUser})(LoginForm)
+export default withRouter(connect(mapStateToProps, {loginUser, logoutUser})(LoginForm))
