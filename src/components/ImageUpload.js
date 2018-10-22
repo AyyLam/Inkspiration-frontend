@@ -75,6 +75,7 @@ class ImageUpload extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault()
     console.log(this.state.uploadedFileCloudinaryUrl, this.state.title)
+    // If a picture URL exists & the title inputted 
     if(this.state.uploadedFileCloudinaryUrl && this.state.title) {
       this.createPicture({title: this.state.title, url: this.state.uploadedFileCloudinaryUrl, artist_id: this.props.currentUser.id})
       alert("Upload successful!")

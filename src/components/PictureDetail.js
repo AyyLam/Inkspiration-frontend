@@ -13,7 +13,7 @@ class PictureDetail extends React.Component {
 
   render(){
     console.log("loading? ", this.props.loading)
-
+      // Show loading gif if yes
       if(this.props.loading) {
         return(<img src='https://media1.tenor.com/images/033dafc252262f1142e74f14c54a7257/tenor.gif?itemid=5447006'/>
       )} else{
