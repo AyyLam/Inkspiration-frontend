@@ -4,7 +4,7 @@ import request from 'superagent';
 import { connect } from 'react-redux'
 import { loadingTrue, loadingFalse } from '../actions/index.js'
 
-
+// Location of image upload
 const CLOUDINARY_UPLOAD_PRESET = 'inkspirationAnt';
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/ayylam/upload';
 
@@ -18,15 +18,17 @@ class ImageUpload extends React.Component {
     };
 
   handleImageUpload = (file) => {
+      // Make a post request to the URL
       let upload = request.post(CLOUDINARY_UPLOAD_URL)
                             .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
                             .field('file', file);
 
+        // Bad response
         upload.end((err, response) => {
           if (err) {
             console.error(err);
           }
-
+          // Good response. Returns a Cloudinary URL of the picture.
           if (response.body.secure_url !== '') {
             console.log(response.body.secure_url)
             this.setState({
@@ -51,6 +53,7 @@ class ImageUpload extends React.Component {
     title: e.target.value
   })}
 
+  // Create a picture instance in the backend
   createPicture = (input) => {
     const baseUrl = 'http://localhost:3001/api/v1/pictures'
     const options = {
