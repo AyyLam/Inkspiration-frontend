@@ -1,7 +1,8 @@
 import React from "react";
 import Picture from "./Picture";
 import { connect } from 'react-redux'
-import { getPictures} from '../actions'
+import { getPictures } from '../actions'
+import { Redirect } from 'react-router-dom'
 
 
 class PictureContainer extends React.Component {
@@ -13,20 +14,26 @@ renderPictures = () => this.props.pictures.map(picture => {
     return <Picture key={picture.id} picture={picture} />
   });
   render() {
-    return(
+    if (this.props.login) {
+      return(
       <div className="App-pics-list">
         <div className="pictures-list">
           {this.renderPictures()}
         </div>
       </div>
     )
+  } else {
+      return <Redirect to="/pictures"/>
+    }
   }
 
 }
 
 const mapStateToProps = (state) => {
   return {
-    pictures: state.pictures
+    pictures: state.pictures,
+    currentUser: state.currentUser,
+    login: state.login
   }
 }
 

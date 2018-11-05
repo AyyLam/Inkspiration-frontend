@@ -5,7 +5,8 @@ const initialState = {
   artist: {},
   loading: false,
   uploadedFileCloudinaryUrl: "",
-  uploadedFile: null
+  uploadedFile: null,
+  login: false
 }
 
 const reducer = (state = initialState, action) => {
@@ -43,6 +44,16 @@ const reducer = (state = initialState, action) => {
     case "LOADING_FALSE":
     return {
       ...state, loading: action.payload.loading
+    }
+
+    case "LOGIN_TRUE":
+    return {
+      ...state, login: action.payload.login
+    }
+
+    case "LOGIN_FALSE":
+    return {
+      ...state, login: action.payload.login
     }
 
     case "UPLOAD_FILE":

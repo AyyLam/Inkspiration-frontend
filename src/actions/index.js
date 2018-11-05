@@ -71,6 +71,7 @@ export const loginUser = (username, password) => {
           } else {
             console.log('YEE');
           localStorage.setItem('token', result.token)
+          dispatch(loginTrue())
           dispatch({
             type: 'GET_USER',
             payload: {
@@ -84,11 +85,14 @@ export const loginUser = (username, password) => {
 }
 
 export const logoutUser = () => {
-  return {
-    type: 'LOGOUT_USER',
-    payload: {
-      currentUser: {}
-    }
+  return (dispatch) => {
+    dispatch({
+      type: 'LOGOUT_USER',
+      payload: {
+        currentUser: {}
+      }
+    })
+    dispatch(loginFalse())
   }
 }
 
@@ -157,6 +161,7 @@ export const loginHandle = (user) => {
     }
   }
 }
+
 export const loadingTrue = () => {
   return {
     type: 'LOADING_TRUE',
@@ -165,11 +170,30 @@ export const loadingTrue = () => {
     }
   }
 }
+
 export const loadingFalse = () => {
   return {
     type: 'LOADING_FALSE',
     payload: {
       loading: false
+    }
+  }
+}
+
+export const loginTrue = () => {
+  return {
+    type: 'LOGIN_TRUE',
+    payload: {
+      login: true
+    }
+  }
+}
+
+export const loginFalse = () => {
+  return {
+    type: 'LOGIN_FALSE',
+    payload: {
+      login: false
     }
   }
 }

@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { loginUser, logoutUser } from '../actions/index'
 import { withRouter } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 class LoginForm extends React.Component {
 
@@ -41,6 +42,7 @@ class LoginForm extends React.Component {
       this.props.history.push("/pictures")
     }
 
+
   render () {
     return (
       <div className="loginform">
@@ -61,7 +63,8 @@ class LoginForm extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    currentUser: state.currentUser
+    currentUser: state.currentUser,
+    login: state.login
   }
 }
 
